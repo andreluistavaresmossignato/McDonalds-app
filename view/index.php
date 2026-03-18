@@ -63,6 +63,8 @@
         <?php endforeach; ?>
     </div>
 
+    <hr>
+
     <h4 class="mt-4">🧾 Itens adicionados:</h4>
 
     <ul class="list-group mb-3" id="lista-itens">
@@ -116,9 +118,9 @@ function atualizarLista() {
     } else {
         itens.forEach((item, index) => {
             lista.innerHTML += `
-                <li class="list-group-item d-flex justify-content-between">
+                <li class="list-group-item">
                     ${item.nome} - R$ ${item.preco.toFixed(2)}
-                    <button class="btn btn-sm btn-danger" onclick="removerItem(${index})">
+                    <button class="btn btn-sm btn-danger ms-2" onclick="removerItem(${index})">
                         Remover
                     </button>
                 </li>

@@ -17,11 +17,18 @@ CREATE TABLE ingredientes (
 );
 
 INSERT INTO ingredientes (nome, categoria, preco, imagem) VALUES
-('Pão Brioche', 'pao', 3.00, 'https://via.placeholder.com/150'),
-('Pão Integral', 'pao', 2.50, 'https://via.placeholder.com/150'),
 
-('Carne', 'recheio', 5.00, 'https://via.placeholder.com/150'),
-('Frango', 'recheio', 4.50, 'https://via.placeholder.com/150'),
+-- RECHEIOS 🍖
+('Hambúrguer 2x Carne', 'recheio', 7.50, 'https://via.placeholder.com/150'),
+('Bacon', 'recheio', 3.00, 'https://via.placeholder.com/150'),
+('Chicken Crispy', 'recheio', 6.00, 'https://via.placeholder.com/150'),
+('Peixe Empanado', 'recheio', 5.50, 'https://via.placeholder.com/150'),
 
-('Alface', 'complemento', 1.00, 'https://via.placeholder.com/150'),
-('Queijo', 'complemento', 2.00, 'https://via.placeholder.com/150');
+-- COMPLEMENTOS 🥬
+('Tomate', 'complemento', 1.50, 'https://via.placeholder.com/150'),
+('Cebola Roxa', 'complemento', 1.20, 'https://via.placeholder.com/150'),
+('Picles', 'complemento', 1.00, 'https://via.placeholder.com/150'),
+('Molho Especial', 'complemento', 2.00, 'https://via.placeholder.com/150'),
+('Maionese', 'complemento', 1.50, 'https://via.placeholder.com/150'),
+('Ketchup', 'complemento', 1.00, 'https://via.placeholder.com/150'),
+('Mostarda', 'complemento', 1.00, 'https://via.placeholder.com/150');

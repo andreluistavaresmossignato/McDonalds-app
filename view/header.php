@@ -7,7 +7,7 @@
 </head>
 <body>
 <header style="background-color: #DA291C;" class="text-white p-3 text-center">
-    <h1>🍔 McDonald's Builder</h1>
-    <nav>Monte seu lanche</nav>
+    <h1><img src="../assets/McDonaldsLogo.png" alt="McDonaldsLogo" class="img-fluid" style="max-height: 50px;"> McDonald's Builder</h1>
+    <nav>Bateu a fome de Méqui?</nav>
 </header>
     <hr>
