@@ -20,7 +20,6 @@ if (isset($_GET['excluir'])) {
     $listaModel->excluir($_GET['excluir']);
 }
 
-$tarefas = $listaModel->listarTodas();
 $ingredientes = $listaModel->listarIngredientes();
 
 // Carrega a View
