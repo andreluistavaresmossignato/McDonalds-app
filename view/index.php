@@ -1,5 +1,7 @@
 <?php include 'header.php'; ?>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <div class="container mt-4">
     <h2 class="text-center mb-4">🍔 Monte seu Lanche</h2>
 
@@ -13,8 +15,10 @@
                         <div class="card-body">
                             <h5><?= $item['nome'] ?></h5>
                             <p>R$ <?= $item['preco'] ?></p>
-                            <button class="btn btn-warning" onclick="addItem('pao', <?= $item['preco'] ?>, '<?= $item['nome'] ?>')">
-                                Adicionar
+                            <button class="btn btn-warning rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 45px; height: 45px;"
+                                onclick="addItem('pao', <?= $item['preco'] ?>, '<?= $item['nome'] ?>')">
+                                <i class="bi bi-plus-lg"></i>
                             </button>
                         </div>
                     </div>
@@ -33,8 +37,10 @@
                         <div class="card-body">
                             <h5><?= $item['nome'] ?></h5>
                             <p>R$ <?= $item['preco'] ?></p>
-                            <button class="btn btn-danger" onclick="addItem('recheio', <?= $item['preco'] ?>, '<?= $item['nome'] ?>')">
-                                Adicionar
+                            <button class="btn btn-danger rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 45px; height: 45px;"
+                                onclick="addItem('recheio', <?= $item['preco'] ?>, '<?= $item['nome'] ?>')">
+                                <i class="bi bi-plus-lg"></i>
                             </button>
                         </div>
                     </div>
@@ -53,8 +59,10 @@
                         <div class="card-body">
                             <h5><?= $item['nome'] ?></h5>
                             <p>R$ <?= $item['preco'] ?></p>
-                            <button class="btn btn-success" onclick="addItem('complemento', <?= $item['preco'] ?>, '<?= $item['nome'] ?>')">
-                                Adicionar
+                            <button class="btn btn-success rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 45px; height: 45px;"
+                                onclick="addItem('complemento', <?= $item['preco'] ?>, '<?= $item['nome'] ?>')">
+                                <i class="bi bi-plus-lg"></i>
                             </button>
                         </div>
                     </div>
@@ -73,9 +81,14 @@
 
     <hr>
 
-    <h3>Total: R$ <span id="total">0.00</span></h3>
-
-    <button class="btn btn-primary mt-2" onclick="finalizar()">Finalizar Pedido</button>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 999;">
+    <div class="bg-dark text-white p-3 rounded shadow">
+        <h5>Total: R$ <span id="total">0.00</span></h5>
+        <button class="btn btn-warning w-100 mt-2" onclick="finalizar()">
+            Finalizar Pedido
+        </button>
+    </div>
+</div>
 </div>
 
 <script>
@@ -96,6 +109,11 @@ function addItem(tipo, preco, nome) {
     itens.push({ tipo, preco, nome });
 
     atualizarLista();
+
+    let toast = new bootstrap.Toast(document.getElementById('toastAdd'), {
+        delay: 1000
+    });
+    toast.show();
 }
 
 function removerItem(index) {
