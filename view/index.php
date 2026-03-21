@@ -71,6 +71,28 @@
         <?php endforeach; ?>
     </div>
 
+    <h4>🥤 Bebidas</h4>
+    <div class="row">
+        <?php foreach ($ingredientes as $item): ?>
+            <?php if ($item['categoria'] == 'bebida'): ?>
+                <div class="col-md-3">
+                    <div class="card mb-3 text-center">
+                        <img src="<?= $item['imagem'] ?>">
+                        <div class="card-body">
+                            <h5><?= $item['nome'] ?></h5>
+                            <p>R$ <?= $item['preco'] ?></p>
+                            <button class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 45px; height: 45px;"
+                                onclick="addItem('bebida', <?= $item['preco'] ?>, '<?= $item['nome'] ?>')">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+
     <hr>
 
     <h4 class="mt-4">🧾 Itens adicionados:</h4>
@@ -78,6 +100,10 @@
     <ul class="list-group mb-3" id="lista-itens">
         <li class="list-group-item text-center">Nenhum item ainda</li>
     </ul>
+
+    <button class="btn btn-secondary mb-3" onclick="limparLista()">
+        Limpar Lista
+    </button>
 
     <hr>
 
@@ -134,13 +160,26 @@ function atualizarLista() {
     if (itens.length === 0) {
         lista.innerHTML = '<li class="list-group-item text-center">Nenhum item ainda</li>';
     } else {
-        itens.forEach((item, index) => {
+        let agrupados = {};
+
+        itens.forEach(item => {
+            if (!agrupados[item.nome]) {
+                agrupados[item.nome] = { ...item, qtd: 1 };
+            } else {
+                agrupados[item.nome].qtd++;
+            }
+        });
+
+        Object.values(agrupados).forEach(item => {
             lista.innerHTML += `
-                <li class="list-group-item">
-                    ${item.nome} - R$ ${item.preco.toFixed(2)}
-                    <button class="btn btn-sm btn-danger ms-2" onclick="removerItem(${index})">
-                        Remover
-                    </button>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${item.nome} ${item.qtd > 1 ? `(x${item.qtd})` : ''}
+                    <div>
+                        <span class="me-2">R$ ${(item.preco * item.qtd).toFixed(2)}</span>
+                        <button class="btn btn-sm btn-danger" onclick="removerItemPorNome('${item.nome}')">
+                            -
+                        </button>
+                    </div>
                 </li>
             `;
         });
@@ -149,18 +188,69 @@ function atualizarLista() {
     document.getElementById('total').innerText = total.toFixed(2);
 }
 
+function limparLista() {
+    itens = [];
+    total = 0;
+
+    categorias = {
+        pao: 0,
+        recheio: 0,
+        complemento: 0,
+        bebida: 0
+    };
+
+    atualizarLista();
+}
+
+function removerItemPorNome(nome) {
+    let index = itens.findIndex(item => item.nome === nome);
+
+    if (index !== -1) {
+        let item = itens[index];
+
+        categorias[item.tipo]--;
+        total -= item.preco;
+
+        itens.splice(index, 1);
+
+        atualizarLista();
+    }
+}
+
 function finalizar() {
     if (categorias.pao === 0) {
         alert("Você precisa adicionar pelo menos 1 pão!");
         return;
     }
 
-    if (categorias.recheio === 0 || categorias.complemento === 0) {
-        alert("Adicione pelo menos 1 recheio e 1 complemento!");
+    if (categorias.recheio === 0) {
+        alert("Adicione pelo menos 1 recheio!");
         return;
     }
 
-    alert("Pedido finalizado! Total: R$ " + total.toFixed(2));
+    let nome = prompt("Digite seu nome:");
+
+    if (!nome) {
+        alert("Nome obrigatório!");
+        return;
+    }
+
+    fetch('salvar_pedido.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, total })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(`Pedido #${data.id} confirmado!\nCliente: ${nome}\nTotal: R$ ${total.toFixed(2)}`);
+
+        // reset
+        itens = [];
+        total = 0;
+        categorias = { pao: 0, recheio: 0, complemento: 0, bebida: 0 };
+
+        atualizarLista();
+    });
 }
 </script>
 
