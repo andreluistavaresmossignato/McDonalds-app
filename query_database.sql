@@ -2,12 +2,6 @@ create database mcdonalds;
 
 use mcdonalds;
 
-create table tarefas(
-	id INT auto_increment primary key,
-    titulo varchar(255) not null,
-    status ENUM('pendente', 'concluida') default 'pendente'
-);
-
 CREATE TABLE ingredientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
