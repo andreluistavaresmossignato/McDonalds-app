@@ -61,7 +61,7 @@ function showToast(message, type = 'success') {
     toast.show();
 }
 
-// ✅ FUNÇÃO addItem AJUSTADA
+// Adicione item a lista
 function addItem(tipo, preco, nome) {
     categorias[tipo]++;
     total += preco;
@@ -166,7 +166,7 @@ function limparLista() {
     }
 }
 
-// ✅ FUNÇÃO finalizar AJUSTADA
+// Finaliza o pedido
 function finalizar() {
     if (categorias.pao === 0) {
         showToast('Adicione pelo menos 1 pão!', 'warning');

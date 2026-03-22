@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍔 McDonald's Builder | Monte seu Lanche</title>
+    <title>McDonald's Builder | Monte seu Lanche</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -568,7 +568,7 @@
         .category-complemento .add-btn:hover { box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5); }
         .category-bebida .add-btn:hover { box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5); }
 
-        /* ============ RESPONSIVIDADE AVANÇADA ============ */
+        /* == RESPONSIVIDADE AVANÇADA == */
         @media (max-width: 576px) {
             body { padding-bottom: 160px; font-size: 0.95rem; }
             .main-header { padding: 0.75rem 0; top: 0; }
