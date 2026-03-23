@@ -241,13 +241,14 @@
 <div class="modal fade" id="successModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center">
-            <div class="modal-header justify-content-center border-0 pb-0">
-                <div class="bg-success rounded-circle p-3">
-                    <i class="bi bi-check2-all text-white fs-1"></i>
-                </div>
+        <div class="modal-header justify-content-center border-0 pb-0">
+            <div class="rounded-circle bg-success d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-check2-all text-white fs-1"></i>
             </div>
+        </div>
+        <br>
             <div class="modal-body pt-0">
-                <h4 class="fw-bold mb-2">Pedido Confirmado! 🎉</h4>
+                <h4 class="fw-bold mb-2">Pedido Confirmado!</h4>
                 <p class="text-muted mb-3">Seu lanche está sendo preparado com carinho.</p>
                 
                 <div class="bg-light rounded p-3 mb-3">
